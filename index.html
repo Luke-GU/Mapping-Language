@@ -30,8 +30,8 @@
                 langParam = langCode;
             }
 
-            // 호텔 위치로 연결 (언어 설정 추가)
-            const hotelMapsUrl = `https://maps.app.goo.gl/EMBDasG5NDhUDhLF8?hl=${langParam}`;
+            // 호텔의 풀 URL로 변경 (단축 URL 대신)
+            const hotelMapsUrl = `https://www.google.com/maps/place/?q=place_id:ChIJQ6qq6jauEmsRUF5La6KqzdA&hl=${langParam}`;
 
             // 자동 리디렉션
             window.location.href = hotelMapsUrl;
