@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redirecting to Google Maps...</title>
+    <title>Redirecting to Your Hotel on Google Maps...</title>
     <script>
         window.onload = function() {
             // 사용자의 브라우저 언어 감지
@@ -24,21 +24,21 @@
                 "yi", "yo", "zu"
             ];
 
-            // Google Maps 기본 언어 (지원하지 않는 경우 기본값: 영어)
+            // 지원되지 않는 언어일 경우 기본값은 영어
             let langParam = "en";
             if (supportedLanguages.includes(langCode)) {
                 langParam = langCode;
             }
 
-            // Google Maps 링크 생성 (언어 설정 적용)
-            const googleMapsUrl = `https://www.google.com/maps?hl=${langParam}`;
+            // 호텔 위치로 연결 (언어 설정 추가)
+            const hotelMapsUrl = `https://maps.app.goo.gl/8reYcBofxK2PyUpg9?hl=${langParam}`;
 
-            // 자동으로 Google Maps로 이동
-            window.location.href = googleMapsUrl;
+            // 자동 리디렉션
+            window.location.href = hotelMapsUrl;
         };
     </script>
 </head>
 <body>
-    <p>Redirecting to Google Maps...</p>
+    <p>Redirecting to your hotel on Google Maps...</p>
 </body>
 </html>
