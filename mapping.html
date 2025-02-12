@@ -3,46 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redirecting to Google Maps</title>
+    <title>Redirecting to Google Maps...</title>
     <script>
-        function redirectToGoogleMaps() {
-            // 1️⃣ 사용자의 브라우저 언어 감지
-            const userLang = navigator.language || navigator.userLanguage; // ex: "en-US", "ko-KR", "zh-CN"
-            let langParam = "en"; // 기본값: 영어
+        window.onload = function() {
+            // 사용자의 브라우저 언어 감지
+            const userLang = navigator.language || navigator.userLanguage;
+            const langCode = userLang.split('-')[0]; // 예: "ko-KR" → "ko"
 
-            // 2️⃣ Google Maps에서 지원하는 언어 코드 목록
+            // Google Maps 지원 언어 리스트
             const supportedLanguages = [
                 "af", "sq", "am", "ar", "hy", "az", "eu", "be", "bn", "bs", "bg", "my",
                 "ca", "ceb", "ny", "zh-CN", "zh-TW", "co", "hr", "cs", "da", "nl", "en",
                 "eo", "et", "tl", "fi", "fr", "fy", "gl", "ka", "de", "el", "gu", "ht",
-                "ha", "haw", "he", "hi", "hmn", "hu", "is", "ig", "id", "ga", "it", "ja",
-                "jw", "kn", "kk", "km", "rw", "ko", "ku", "ky", "lo", "la", "lv", "lt",
-                "lb", "mk", "mg", "ms", "ml", "mt", "mi", "mr", "mn", "ne", "no", "or",
-                "ps", "fa", "pl", "pt", "pa", "ro", "ru", "sm", "gd", "sr", "st", "sn",
-                "sd", "si", "sk", "sl", "so", "es", "su", "sw", "sv", "tg", "ta", "tt",
-                "te", "th", "tr", "tk", "uk", "ur", "ug", "uz", "vi", "cy", "xh", "yi",
-                "yo", "zu"
+                "ha", "haw", "iw", "he", "hi", "hmn", "hu", "is", "ig", "id", "ga", "it",
+                "ja", "jw", "kn", "kk", "km", "rw", "ko", "ku", "ky", "lo", "la", "lv",
+                "lt", "lb", "mk", "mg", "ms", "ml", "mt", "mi", "mr", "mn", "ne", "no",
+                "or", "ps", "fa", "pl", "pt", "pa", "ro", "ru", "sm", "gd", "sr", "st",
+                "sn", "sd", "si", "sk", "sl", "so", "es", "su", "sw", "sv", "tg", "ta",
+                "tt", "te", "th", "tr", "tk", "uk", "ur", "ug", "uz", "vi", "cy", "xh",
+                "yi", "yo", "zu"
             ];
 
-            // 3️⃣ 언어 코드 추출 & 매칭
-            if (userLang.startsWith("zh-TW")) {
-                langParam = "zh-TW"; // 번체 중국어
-            } else if (userLang.startsWith("zh-CN") || userLang.startsWith("zh")) {
-                langParam = "zh-CN"; // 간체 중국어
-            } else {
-                const langCode = userLang.split("-")[0]; // "ko-KR" → "ko"
-                if (supportedLanguages.includes(langCode)) {
-                    langParam = langCode;
-                }
+            // Google Maps 기본 언어 (지원하지 않는 경우 기본값: 영어)
+            let langParam = "en";
+            if (supportedLanguages.includes(langCode)) {
+                langParam = langCode;
             }
 
-            // 4️⃣ Google Maps URL 생성 & 이동
+            // Google Maps 링크 생성 (언어 설정 적용)
             const googleMapsUrl = `https://www.google.com/maps?hl=${langParam}`;
+
+            // 자동으로 Google Maps로 이동
             window.location.href = googleMapsUrl;
-        }
+        };
     </script>
 </head>
-<body onload="redirectToGoogleMaps()">
+<body>
     <p>Redirecting to Google Maps...</p>
 </body>
 </html>
